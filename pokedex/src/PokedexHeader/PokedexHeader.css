@@ -1,0 +1,21 @@
+header {
+    border: 1px solid #000000;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: 40px;
+}
+.perfil{ 
+    align-self: center;
+}
+img{
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+input {
+    margin: 3px;
+}
+button {
+    margin: 2px;
+}
