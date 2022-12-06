@@ -7,6 +7,7 @@ import {PokedexCard} from "../PokedexCard";
 // A cada uno de los componentes creados, se les creara una carpeta con su correspondientes index.js y su nombre_de_componente.css, fuera de la carpeta App y luego de esto debe importar en el encabezado de este documento.
 
 function AppUI(){
+
 return(
     <React.Fragment>
         <PokedexHeader>
