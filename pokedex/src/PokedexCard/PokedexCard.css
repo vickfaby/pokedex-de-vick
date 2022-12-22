@@ -1,5 +1,14 @@
 .pokedexCard {
-    height: 100px;
-    width: 80px;
     border: 1px solid #000000;    
+    background-color: burlywood;
+    display: grid;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+}
+span {
+    justify-self: center;
+}
+.pokedexCardImage{
+    justify-self: center;
+    height: 4rem;
 }

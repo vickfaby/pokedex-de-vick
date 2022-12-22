@@ -1,25 +1,32 @@
 import React from "react";
 import { PokedexCard } from "../PokedexCard";
+import { PokedexContext } from "../PokedexContext";
 import "./PokedexGeneralContainer.css";
 
 function PokedexGeneralContainer () {
-    const [cosa, setCosa] = React.useState(false);
-    const pokemones = [
-        {name:'pikachu'},
-        {name:'baulbasor'},
-        {name:'charmander'},
-    ];
-    return(
-        <div className="pokedexContainer"> 
-        {pokemones.map((pokemon) => (
-            <PokedexCard
-            key={pokemon.name}
-            position={pokemones.indexOf(pokemon)}
-            name={pokemon.name}
-            ></PokedexCard>
-        ))}           
-        </div>
-    );
+
+    const {pokemones, ConsultaPokemones} = React.useContext(PokedexContext);
+
+    let newPokemon = [...pokemones];
+    console.log('Este es el newPokemon');
+    console.log(newPokemon);
+
+        return(
+            <div className="pokedexContainer"
+            onClick={ConsultaPokemones}
+            > 
+            { newPokemon.map((pokemon) => (
+                <PokedexCard
+                key={pokemon.name}
+                position={newPokemon.indexOf(pokemon)}
+                name={pokemon.name}
+                >
+                </PokedexCard>
+            ))}           
+            </div>
+        );
+    
+
 
 }
 
