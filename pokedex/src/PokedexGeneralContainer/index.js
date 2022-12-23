@@ -5,12 +5,11 @@ import "./PokedexGeneralContainer.css";
 
 function PokedexGeneralContainer () {
 
-    const {pokemones, ConsultaPokemones} = React.useContext(PokedexContext);
+    const {pokemones, ConsultaPokemones,
+        urlsPokemon} = React.useContext(PokedexContext);
 
-    let newPokemon = [...pokemones];
-    console.log('Este es el newPokemon');
-    console.log(newPokemon);
-
+    let newPokemon = [...pokemones]; // Recibe el valor de pokemones desde el provider
+    let newDatos = [...urlsPokemon];
         return(
             <div className="pokedexContainer"
             onClick={ConsultaPokemones}
@@ -18,8 +17,9 @@ function PokedexGeneralContainer () {
             { newPokemon.map((pokemon) => (
                 <PokedexCard
                 key={pokemon.name}
-                position={newPokemon.indexOf(pokemon)}
+                position={newPokemon.indexOf(pokemon)+1}
                 name={pokemon.name}
+                url={newDatos[newPokemon.indexOf(pokemon)]} 
                 >
                 </PokedexCard>
             ))}           

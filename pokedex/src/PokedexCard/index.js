@@ -8,10 +8,13 @@ function PokedexCard(propiedades) {
         <div 
         className="pokedexCard"
         >
-            <span>{propiedades.position}</span>
+            <span
+            >{propiedades.position}</span>
             <img 
             className="pokedexCardImage"
-            alt="un pokemón"></img>
+            alt="un pokemón"
+            src={propiedades.url}
+            ></img>
             <span>{propiedades.name}</span>
         </div>
     );
