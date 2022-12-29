@@ -1,15 +1,14 @@
 .pokedexContainer {
-    border: 1px solid #000000;
+    border: 1px solid #acbcea;
     margin: 1rem;
     width: auto;
+    height: 35rem;
     overflow-y: scroll;
     display: grid;
-    /* grid-template-rows: 15rem; */
-    grid-template-columns: repeat(auto-fill, minmax(6rem, 6rem));
-    /* grid-template-rows: repeat(auto-fill, minmax(12rem, 12rem) minmax(12rem, 12rem)); */
-    /* grid-auto-columns: 6rem; */
-    grid-auto-rows: 8rem;
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 8rem));
+    grid-auto-rows: 11rem;
     gap: 1rem;
     justify-content: space-evenly;
     padding: 1rem;
+    font-family: 'Nunito Sans', sans-serif;
 }

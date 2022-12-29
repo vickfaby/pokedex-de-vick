@@ -1,8 +1,13 @@
 header {
-    border: 1px solid #000000;
-    display: grid;
-    grid-template-columns: auto auto auto;
-    grid-template-rows: 40px;
+  border-bottom: 1px solid #acbcea;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: 40px;
+  padding-bottom: 0.5rem;
+  margin: 0.5rem;
+}
+header span {
+  font-weight: 400;
 }
 .perfil{ 
     align-self: center;
@@ -11,8 +16,8 @@ header {
     display: flex;
 
 }
-img{
-    height: 100%;
+header img{
+    height: 2.6rem;
     border-radius: 20px;
     object-fit: cover;
 }
@@ -20,7 +25,11 @@ img{
     margin: auto;
 }
 input {
-    margin: 3px;
+  padding: 0.5rem;
+  color: #6c8fad;
+  margin: 3px;
+  border: 0.1rem solid #acbcea;
+  border-radius: 1rem;
 }
 button {
     margin: 2px;

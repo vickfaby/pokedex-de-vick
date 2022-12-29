@@ -1,0 +1,31 @@
+.Card {
+  height: 23rem;
+  width: 16rem;
+  border-radius: 0.3rem;
+  border: 10px solid #ffffff;
+  background-image: radial-gradient(circle at 98.5% 9.31%, #bbffff 0, #a5ffff 12.5%, #93ffff 25%, #86ffff 37.5%, #7dfffe 50%, #78e2e8 62.5%, #75c8d3 75%, #72b3c1 87.5%, #70a2b0 100%);
+  display: GRID;
+  grid-gap: 0.5rem;
+  color: #000000;
+  padding: 1rem;
+  justify-content: space-around;
+}
+.Card span {
+  font-size: 1.1rem;
+}
+.Card img {
+  max-width: 10rem;
+  max-height: 10rem;
+  object-fit: contain;
+}
+.Card span:nth-child(2){
+  font-weight: 100;
+}
+
+.buttonCard{
+  border: none;
+  border-radius: 1rem;
+  background: #FFFFFF;
+  opacity: 90%;
+  height: 2rem;
+}

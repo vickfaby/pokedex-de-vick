@@ -3,23 +3,22 @@ import { PokedexCard } from "../PokedexCard";
 import { PokedexContext } from "../PokedexContext";
 import "./PokedexGeneralContainer.css";
 
-function PokedexGeneralContainer () {
+function PokedexGeneralContainer (propiedades) {
 
-    const {pokemones, ConsultaPokemones,
-        urlsPokemon} = React.useContext(PokedexContext);
+    const {searchedPokemons} = React.useContext(PokedexContext);
 
-    let newPokemon = [...pokemones]; // Recibe el valor de pokemones desde el provider
-    let newDatos = [...urlsPokemon];
+    let newPokemon = [...searchedPokemons]; // Recibe el valor de pokemones desde el provider
+    
         return(
             <div className="pokedexContainer"
-            onClick={ConsultaPokemones}
-            > 
+            >
+            {propiedades.children} 
             { newPokemon.map((pokemon) => (
                 <PokedexCard
                 key={pokemon.name}
-                position={newPokemon.indexOf(pokemon)+1}
+                position={pokemon.id} 
                 name={pokemon.name}
-                url={newDatos[newPokemon.indexOf(pokemon)]} 
+                url={pokemon.url} 
                 >
                 </PokedexCard>
             ))}           

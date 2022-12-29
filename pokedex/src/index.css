@@ -13,6 +13,7 @@ html {
 body {
   font-size: 1rem;
   /*=16px*/
-  min-width: 24rem;
+  min-width: 23rem;
   height: 100%;
+  background-image: linear-gradient(115deg, #ffffff 0, #ffffff 16.67%, #e9feff 33.33%, #c1e9fe 50%, #99d3f6 66.67%, #75bfef 83.33%, #54abe9 100%);
 }
