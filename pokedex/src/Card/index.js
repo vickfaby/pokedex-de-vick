@@ -3,7 +3,7 @@ import { PokedexContext } from "../PokedexContext";
 import "./Card.css";
 
 function Card() {
-  const { setOpenModal, clickedPokemon, searchedPokemons } =
+  const { setOpenModal, clickedPokemon, searchedPokemons, setObserver } =
     React.useContext(PokedexContext);
 
   const clickeado = clickedPokemon;
@@ -17,7 +17,7 @@ function Card() {
 
   return (
     <div className="Card">
-      <img src={dato[0].url}></img>
+      <img src={dato[0].url} alt='un pokemon'></img>
 
       <div>
         <span>Name: </span>

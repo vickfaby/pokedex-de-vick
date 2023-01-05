@@ -1,32 +1,19 @@
-import React from "react";
+import React, { useRef } from "react";
+import { CardSkeleton } from "../CardSkeleton";
 import { PokedexCard } from "../PokedexCard";
 import { PokedexContext } from "../PokedexContext";
 import "./PokedexGeneralContainer.css";
 
-function PokedexGeneralContainer (propiedades) {
+function PokedexGeneralContainer(propiedades) {
+  const { setObserver,cardLimit,cardCount, setCardCount} = React.useContext(PokedexContext);
+  let cuentaDeRenders = 0;
+  
 
-    const {searchedPokemons} = React.useContext(PokedexContext);
-
-    let newPokemon = [...searchedPokemons]; // Recibe el valor de pokemones desde el provider
-    
-        return(
-            <div className="pokedexContainer"
-            >
-            {propiedades.children} 
-            { newPokemon.map((pokemon) => (
-                <PokedexCard
-                key={pokemon.name}
-                position={pokemon.id} 
-                name={pokemon.name}
-                url={pokemon.url} 
-                >
-                </PokedexCard>
-            ))}           
-            </div>
-        );
-    
-
-
+  return (
+    <div className="pokedexContainer" id="pokedexGeneralContainer">
+      {propiedades.children}
+    </div>
+  );
 }
 
-export {PokedexGeneralContainer}
+export { PokedexGeneralContainer };

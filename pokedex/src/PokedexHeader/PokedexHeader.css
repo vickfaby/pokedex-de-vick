@@ -1,7 +1,7 @@
 header {
   border-bottom: 1px solid #acbcea;
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto;
   grid-template-rows: 40px;
   padding-bottom: 0.5rem;
   margin: 0.5rem;
@@ -9,20 +9,27 @@ header {
 header span {
   font-weight: 400;
 }
-.perfil{ 
-    align-self: center;
-    padding: 0.2rem;
-    height: 100%;
-    display: flex;
-
+.perfil {
+  align-self: center;
+  padding: 0.2rem;
+  height: 100%;
+  display: flex;
 }
-header img{
-    height: 2.6rem;
-    border-radius: 20px;
-    object-fit: cover;
+header img {
+  height: 2.5rem;
+  border-radius: 20px;
+  object-fit: cover;
 }
-.pokedexHeaderTrainerName{
-    margin: auto;
+.pokedexHeaderTrainerName {
+  margin: auto;
+  position: absolute;
+  background: #ffffff;
+  border-radius: 1rem;
+  border: 2px solid #a0e5ff;
+  padding: 0.2rem;
+  left: 3.8rem;
+  top: 2rem;
+  font-size: 0.6rem;
 }
 input {
   padding: 0.5rem;
@@ -32,5 +39,5 @@ input {
   border-radius: 1rem;
 }
 button {
-    margin: 2px;
+  margin: 2px;
 }

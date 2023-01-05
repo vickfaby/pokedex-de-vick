@@ -1,0 +1,15 @@
+.cardsContainer {
+    border: 1px solid #acbcea;
+    margin: 1rem;
+    width: auto;
+    height: 34rem;
+    overflow-y: scroll;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 8rem));
+    grid-auto-rows: 11rem;
+    gap: 1rem;
+    justify-content: space-evenly;
+    padding: 1rem;
+    font-family: 'Nunito Sans', sans-serif;
+    position: relative;
+}
