@@ -15,15 +15,18 @@ import { CardsContainer } from "../CardsContainer";
 function AppUI() {
   const { openModal, setOpenModal, loadButton, isLoading, setObserver } =
     React.useContext(PokedexContext);
+    const cuenta = ["a","b"]
   return (
     <React.Fragment>
       <PokedexHeader></PokedexHeader>
       <PokedexGeneralContainer>
-        {isLoading && <CardSkeleton></CardSkeleton>}
-        {(!isLoading && !loadButton) && <CardsContainer></CardsContainer>}
-        {loadButton && ( // si loadButton == true entonces lo crea si no... lo quita
+      {loadButton && ( // si loadButton == true entonces lo crea si no... lo quita
           <LoadButton></LoadButton>
         )}
+        {/* {isLoading && <CardSkeleton></CardSkeleton>} */}
+
+        {(!isLoading && !loadButton) && <CardsContainer></CardsContainer>}
+
         {openModal && (
           <Modal>
             <Card></Card>

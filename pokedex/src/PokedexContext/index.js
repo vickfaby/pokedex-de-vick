@@ -1,8 +1,6 @@
-import React, { useRef } from "react";
+import React from "react";
 import axios from "axios";
 import "../PokedexCard";
-import { PokedexCard } from "../PokedexCard";
-import { PokedexGeneralContainer } from "../PokedexGeneralContainer";
 
 const PokedexContext = React.createContext();
 //EL PROVIDER PROVEE TODOS LOS DATOS NECESARIOS PARA LOS COMPONENTES.
@@ -10,15 +8,14 @@ const PokedexContext = React.createContext();
 function PokedexProvider(propiedades) {
   const [pokemones, setPokemones] = React.useState("");
   //pokemons empieza como un vacio ""
-
   const [searchedValue, setSearchedValue] = React.useState("");
   const [openModal, setOpenModal] = React.useState(false);
   const [clickedPokemon, setClickedPokemon] = React.useState("");
   const [loadButton, setLoadButton] = React.useState(true);
   const [isLoading, setIsLoading] = React.useState();
   const [offset, setOffset] = React.useState(0);
-  const [lastIdCard, setLastIdCard] = React.useState("");
-  //const [cardCount, setCardCount] = React.useState(1);
+  const [renderAcount, setRenderAcount] = React.useState(1);
+  const [cardtoObserve, setCardtoObserve] = React.useState("default");
   //const [cardLimit, setCardLimit] = React.useState(8);
   const api = axios.create({
     baseURL: "https://pokeapi.co/api/v2/pokemon",
@@ -30,44 +27,54 @@ function PokedexProvider(propiedades) {
 
   let pokemonsObject = []; // almacenará los objetos pokemons con los datos necesarios.
   let cardCount = 1;
+  const cardLoad = 8;
   let cardLimit = 8;
+  //let renderAcount = 0;
+  // let offset = 0;
 
-  const ConsultaPokemones = async (offset) => {
+  const ConsultaPokemones = async () => {
+    setRenderAcount(renderAcount + 1);
+    console.log(`RENDER ACOUNT ES: ${renderAcount}`);
     setIsLoading(true);
     setLoadButton(false);
     const { data } = await api("", {
-      params: { offset, limit: offset + cardLimit },
-    }); // guarda el nuevo valor en la variable pokemones
-    const downloadedPokemons = data.results; // guarda los 150 pokemon
+      params: { offset, limit: cardLoad },
+    });
+    const downloadedPokemons = data.results; // guarda los 8 pokemon
     console.log("Estos son los resultados de la consulta pokemon: ");
     console.log(data.results);
-
     downloadedPokemons.map(
       (pokemon) => ConsultaDatosPokemon(pokemon.name) //ejectuamos esta función por cada pokemon del Array: downloadedPokemons
     );
+    setOffset(offset + cardLoad);
+    cardLimit = cardLoad * renderAcount;
+    console.log(`El nuevo cardLimit es ${cardLimit} y el offset ${offset}`);
   };
 
   const ConsultaDatosPokemon = async (pokemonName) => {
     const { data } = await api("/" + pokemonName); // se esta haciendo en desorden
 
     const objeto = {
-      //Se crea un objeto que almacena los datos del pokemon que nos interesa exportar.
       name: pokemonName,
       id: data.id,
       url: data.sprites.other.dream_world.front_default,
       tipo: data.types[0].type.name,
     };
 
-    pokemonsObject.push(objeto); // pueshea cada objeto en el Array de objetos pokemon
+    pokemonsObject.push(objeto);
+    if (pokemonsObject.length === cardLoad) {
+      const newPokemons = [...pokemones];
+      newPokemons.map((pokemon) => pokemonsObject.push(pokemon));
+      console.log(`ESTE ES EL OBJETO DE POKEMONES COMPLETO: `);
+      console.log(pokemonsObject);
+      console.log(`ESTE ES EL ARRAY POKEMONES SETEADOS PREVIAMENTE:`);
+      console.log(pokemones);
+    }
 
     if (pokemonsObject.length === cardLimit) {
-      // al contar los 150 pokemones, entra a ordenarlos y setear el resultado en la variable "pokemones" del contexto
-      pokemonsObject.sort((a, b) => a.id - b.id); // Ordena el Array de objetos pokemon
-      //Imprime el array de todos los pokemons
-      // console.log("Este es el Array de objetos pokemones");
-      // console.log(pokemonsObject);
-      setPokemones(pokemonsObject); // GUARDA EL ARRAY DE OBJETOS EN EL CONTEXT
-      console.log("setLoading is False");
+      pokemonsObject.sort((a, b) => a.id - b.id);
+      setPokemones(pokemonsObject);
+      console.log("Terminó la descarga de información de pokemones");
       setIsLoading(false);
     }
   };
@@ -77,30 +84,43 @@ function PokedexProvider(propiedades) {
   const alInterceptar = (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        console.log("IS INTERSECTING!!!!");
+        console.log(`SE ACTIVÓ INTERSECTING!!!! en ${entry.target.id}`);
         ConsultaPokemones(cardCount);
       }
-      console.log("Se activó el Observer en el entry");
-      console.log(entry);
     });
   };
 
   const setObserver = () => {
-    console.log("Se abrió la función observer");
     if (cardCount === cardLimit) {
-      console.log("llego a la ultima targeta!");
+      
       const options = {
         threshold: 0.5,
       };
-      const observer = new IntersectionObserver(alInterceptar, options);
-      observer.observe(
-        document.getElementById("cardsContainer").lastElementChild
-      );
+
+
+      const lastCard = document.getElementById("cardsContainer").lastElementChild;
+      const lastCardId= lastCard.id;
+      let tarjetaPrevia = "tarjeta Default!";
+
+      console.log(`CONFIRMACIÓN: la Card observada previamente fue: ${cardtoObserve} Y la nueva lastCard es : ${lastCardId}, tarjeta previa: ${tarjetaPrevia}`);
+
+
+      if(cardtoObserve !== lastCardId && tarjetaPrevia !== lastCardId){
+        const observer = new IntersectionObserver(alInterceptar, options);
+        observer.observe(lastCard);
+        console.log("Como no se repite, se instala Intercepeter en la ultima tarjeta con id: " + lastCardId);
+
+        setCardtoObserve(lastCardId);
+        tarjetaPrevia = lastCardId;
+      } else {
+        console.log('como son iguales se evitó repertir la instalación del intercepter');
+      }
+
       cardLimit = cardLimit + 8; // 8  es que aumenta dea a 8 cards
+
     } else {
       cardCount++;
-      console.log(`Esta es la cuenta ${cardCount}`);
-      console.log(`Esta es el limite ${cardLimit}`);
+      //console.log(`Observer: cuenta ${cardCount} y limite ${cardLimit}`);
     }
   };
   //////////////////////////////////////////////////////////
@@ -135,10 +155,6 @@ function PokedexProvider(propiedades) {
         setLoadButton,
         isLoading,
         setIsLoading,
-        offset,
-        setOffset,
-        lastIdCard,
-        setLastIdCard,
         setObserver,
         cardLimit,
         // cardCount,
