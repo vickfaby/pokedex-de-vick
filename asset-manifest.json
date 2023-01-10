@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/pokedex/static/css/main.9b85c3bb.css",
-    "main.js": "/pokedex/static/js/main.366a604b.js",
-    "index.html": "/pokedex/index.html",
-    "main.9b85c3bb.css.map": "/pokedex/static/css/main.9b85c3bb.css.map",
-    "main.366a604b.js.map": "/pokedex/static/js/main.366a604b.js.map"
+    "main.css": "/pokedex-de-vick/static/css/main.9b85c3bb.css",
+    "main.js": "/pokedex-de-vick/static/js/main.366a604b.js",
+    "index.html": "/pokedex-de-vick/index.html",
+    "main.9b85c3bb.css.map": "/pokedex-de-vick/static/css/main.9b85c3bb.css.map",
+    "main.366a604b.js.map": "/pokedex-de-vick/static/js/main.366a604b.js.map"
   },
   "entrypoints": [
     "static/css/main.9b85c3bb.css",
